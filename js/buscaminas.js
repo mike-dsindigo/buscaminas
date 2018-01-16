@@ -53,11 +53,64 @@ let changeMina = function(btn_id) {
     if(status == 'off') {
         element.addClass('btn-danger').html("<i class='fas fa-flag'></i>").attr('status', 'on');
         result.html("<i class='fas fa-flag'></i>");
+        addMina(x, y);
     }else {
         element.removeClass('btn-danger').html("<i class='far fa-circle'></i>").attr('status', 'off');
-        result.html('0');
+        removeMina(x, y);
     }
-}
+};
+
+let addMina = function(x, y) {
+    x = parseInt(x);
+    y = parseInt(y);
+    for(let i = (x - 1); i <= (x + 1); i++){
+        for(let j = (y - 1); j <= (y + 1); j++){
+            if((i + "_" + j) != (x + "_" + y)) {
+                let item = $("#res_" + i + "_" + j);
+                if(parseInt(item.text())>=0){
+                    let value = parseInt(item.text()) + 1;
+                    item.html(value);
+                }
+            }
+        }
+    }
+};
+
+let removeMina = function(x, y) {
+    x = parseInt(x);
+    y = parseInt(y);
+    for(let i = (x - 1); i <= (x + 1); i++){
+        for(let j = (y - 1); j <= (y + 1); j++){
+            let item = $("#res_" + i + "_" + j);
+            if(parseInt(item.text())>=0){
+                let value = parseInt(item.text()) - 1;
+                item.html(value);
+            }
+        }
+    }
+    checkItem(x, y);
+};
+
+let checkItem = function(x, y) {
+    let item = $("#res_" + x + "_" + y);
+    x = parseInt(x);
+    y = parseInt(y);
+    let count = 0;
+    for(let i = (x - 1); i <= (x + 1); i++){
+        if( i>=0) {
+            for (let j = (y - 1); j <= (y + 1); j++) {
+                if( j>=0 ) {
+                    if ((i + "_" + j) != (x + "_" + y)) {
+                        let item_check = $("#res_" + i + "_" + j);console.log();
+                        if (!(parseInt(item_check.text()) >= 0) && item_check[0])
+                            count++;
+                    }
+                }
+            }
+        }
+    }
+    item.html(count);
+};
 
 
 
