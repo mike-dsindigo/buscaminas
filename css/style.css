@@ -1,16 +1,14 @@
-body{
+body {
     background-color: #1a1a1a;
     color: #fff;
-}
-footer{
-    background-color: #000;
-    bottom: 0;
-    min-height: 30px;
-    position: absolute;
-    text-align: center;
-    width: 100%;
 }
 header{
     color: #92c641;
     margin: 25px;
+}
+td{
+    padding: .15rem!important;
+}
+.btn{
+    padding: .01rem!important;
 }

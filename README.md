@@ -1,2 +1,2 @@
 # buscaminas
-Ejercicio de buscaminas con PHP + jQuery
+Ejercicio de buscaminas con HTML + jQuery

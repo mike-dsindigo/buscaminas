@@ -11,6 +11,8 @@
     <!-- Bootstrap-->
     <link rel="stylesheet" href="./css/bootstrap.css">
     <script src="./js/bootstrap.js"></script>
+    <!-- FA icons -->
+    <script defer src="./vendor/faicons/js/fontawesome-all.js"></script>
 
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/buscaminas.js"></script>
@@ -23,7 +25,7 @@
     </header>
     <div class="container">
         <div class="row text-center justify-content-md-center">
-            <div class="col">
+            <div class="col-3">
                 <label>1. Teclee el número de columnas y filas que tendrá el tablero</label>
                 <div class="form-group col-6 offset-3">
                     <label for="columnas">Columnas</label>
@@ -37,21 +39,18 @@
             <div class="col">
                 <label>2. Seleccione la posición de la mina dando clic en algún botón del tablero</label>
                 <div class="col">
-                    <table class="table" id="table_minas" style="display: none;">
+                    <table class="table table-bordered table-light" id="table_minas" style="display: none;">
                     </table>
                 </div>
             </div>
             <div class="col">
                 <label>3. Resultado:</label>
                 <div class="col">
-                    <table class="table" id="table_result" style="display: none;">
+                    <table class="table table-bordered" id="table_result" style="display: none;">
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    <footer>
-        By Mike Mtz
-    </footer>
 </body>
 </html>
