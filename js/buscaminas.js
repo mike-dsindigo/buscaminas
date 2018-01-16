@@ -30,6 +30,7 @@ $(function() {
             return
         }
 
+        //Las tablas se crearán con el código html que se genere
         let html_minas = "";
         let html_result = "";
         for(let i=0; i<filas; i++){
@@ -43,7 +44,7 @@ $(function() {
                                     "<i class='far fa-circle'></i>" +
                                 "</button>"+
                               "</td>";
-                html_result += "<td id='td_" + i + "_" + j + "'><span id='res_" + i + "_" + j + "'>0</span></td>";
+                html_result += "<td id='td_" + i + "_" + j + "'><span id='res_" + i + "_" + j + "' class='text_0'>0</span></td>";
             }
             html_minas += "</tr>";
             html_result += "</tr>";
@@ -64,13 +65,15 @@ let changeMina = function(btn_id) {
     let td = $("#td_" + btn_id);
     td.attr('class', '');
 
+    //Getting data
     let x = element.attr('x');
     let y = element.attr('y');
     let status = element.attr('status');
 
+    //Switch status
     if(status == 'off') {
-        element.addClass('btn-danger').html("<i class='fas fa-bomb'></i>").attr('status', 'on');
-        result.html("<i class='fas fa-bomb'></i>").attr('class','').addClass('text_0');
+        element.addClass('btn-danger').html("<i class='fas fa-asterisk'></i>").attr('status', 'on');
+        result.html("<i class='fas fa-asterisk'></i>").attr('class','').addClass('text_white');
         td.addClass('bg-danger');
         setMina(x, y, 'add');
     }else {
@@ -80,7 +83,8 @@ let changeMina = function(btn_id) {
 };
 
 /**
- *
+ * Función que actualiza el status, valor y estilo de uno o varios elementos en el tablero de resultados dependiendo de
+ * la acción a realizar
  * @param x
  * @param y
  * @param action

@@ -16,7 +16,8 @@ td{
 .btn{
     padding: .01rem!important;
 }
-.text_0{color: #fff;}
+.text_white{color: #fff;}
+.text_0{color: #c5c5c5;}
 .text_1{color: #3f4eec;}
 .text_2{color: #1baf13;}
 .text_3{color: #eb0610;}
