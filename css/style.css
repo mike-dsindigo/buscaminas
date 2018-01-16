@@ -6,6 +6,9 @@ header{
     color: #92c641;
     margin: 25px;
 }
+table{
+    margin-top: 25px;
+}
 td{
     padding: .15rem!important;
 }

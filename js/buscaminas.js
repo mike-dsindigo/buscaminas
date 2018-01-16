@@ -31,27 +31,32 @@ $(function() {
                                     "<i class='far fa-circle'></i>" +
                                 "</button>"+
                               "</td>";
+                html_result += "<td><span id='res_" + i + "_" + j + "'>0</span></td>";
             }
             html_minas += "</tr>";
             html_result += "</tr>";
         }
 
-        $("#table_minas").html(html_minas);
-        $("#table_minas").show();
+        $("#table_minas").html(html_minas).show();
+        $("#table_result").html(html_result).show();
     }
 });
 
 let changeMina = function(btn_id) {
     let element = $("#" + btn_id);
+    let result = $("#res_" + btn_id);
 
     let x = element.attr('x');
     let y = element.attr('y');
     let status = element.attr('status');
 
-    if(status == 'off')
+    if(status == 'off') {
         element.addClass('btn-danger').html("<i class='fas fa-flag'></i>").attr('status', 'on');
-    else
+        result.html("<i class='fas fa-flag'></i>");
+    }else {
         element.removeClass('btn-danger').html("<i class='far fa-circle'></i>").attr('status', 'off');
+        result.html('0');
+    }
 }
 
 
