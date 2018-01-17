@@ -1,5 +1,5 @@
-'use strict';
-$(function() {
+(function() {
+    'use strict';
     //Inicializar variables
     let columnas = $("#columnas").val();
     let filas = $("#filas").val();
@@ -53,77 +53,77 @@ $(function() {
         $("#table_minas").html(html_minas).show();
         $("#table_result").html(html_result).show();
     }
-});
 
-/**
- * Función que cambia el status del botón
- * @param btn_id
- */
-let changeMina = function(btn_id) {
-    let element = $("#" + btn_id);
-    let result = $("#res_" + btn_id);
-    let td = $("#td_" + btn_id);
-    td.attr('class', '');
+    /**
+     * Función que cambia el status del botón
+     * @param btn_id
+     */
+    let changeMina = function(btn_id) {
+        let element = $("#" + btn_id);
+        let result = $("#res_" + btn_id);
+        let td = $("#td_" + btn_id);
+        td.attr('class', '');
 
-    //Getting data
-    let x = element.attr('x');
-    let y = element.attr('y');
-    let status = element.attr('status');
+        //Getting data
+        let x = element.attr('x');
+        let y = element.attr('y');
+        let status = element.attr('status');
 
-    //Switch status
-    if(status == 'off') {
-        element.addClass('btn-danger').html("<i class='fas fa-asterisk'></i>").attr('status', 'on');
-        result.html("<i class='fas fa-asterisk'></i>").attr('class','').addClass('text_white');
-        td.addClass('bg-danger');
-        setMina(x, y, 'add');
-    }else {
-        element.removeClass('btn-danger').html("<i class='far fa-circle'></i>").attr('status', 'off');
-        setMina(x, y, 'remove');
-    }
-};
+        //Switch status
+        if(status == 'off') {
+            element.addClass('btn-danger').html("<i class='fas fa-asterisk'></i>").attr('status', 'on');
+            result.html("<i class='fas fa-asterisk'></i>").attr('class','').addClass('text_white');
+            td.addClass('bg-danger');
+            setMina(x, y, 'add');
+        }else {
+            element.removeClass('btn-danger').html("<i class='far fa-circle'></i>").attr('status', 'off');
+            setMina(x, y, 'remove');
+        }
+    };
 
-/**
- * Función que actualiza el status, valor y estilo de uno o varios elementos en el tablero de resultados dependiendo de
- * la acción a realizar
- * @param x
- * @param y
- * @param action
- */
-let setMina = function(x, y, action) {
-    x = parseInt(x);
-    y = parseInt(y);
-    let count = 0;
-    for(let i = (x - 1); i <= (x + 1); i++){
-        for(let j = (y - 1); j <= (y + 1); j++){
-            let item = $("#res_" + i + "_" + j);
-            switch (action){
-                case 'add':
-                    if((i + "_" + j) != (x + "_" + y)) {
+    /**
+     * Función que actualiza el status, valor y estilo de uno o varios elementos en el tablero de resultados dependiendo de
+     * la acción a realizar
+     * @param x
+     * @param y
+     * @param action
+     */
+    let setMina = function(x, y, action) {
+        x = parseInt(x);
+        y = parseInt(y);
+        let count = 0;
+        for(let i = (x - 1); i <= (x + 1); i++){
+            for(let j = (y - 1); j <= (y + 1); j++){
+                let item = $("#res_" + i + "_" + j);
+                switch (action){
+                    case 'add':
+                        if((i + "_" + j) != (x + "_" + y)) {
+                            if(parseInt(item.text())>=0){
+                                let value = parseInt(item.text()) + 1;
+                                item.html(value).attr('class','').addClass('text_' + value);
+                            }
+                        }
+                        break;
+                    case 'remove':
                         if(parseInt(item.text())>=0){
-                            let value = parseInt(item.text()) + 1;
+                            let value = parseInt(item.text()) - 1;
                             item.html(value).attr('class','').addClass('text_' + value);
                         }
-                    }
-                break;
-                case 'remove':
-                    if(parseInt(item.text())>=0){
-                        let value = parseInt(item.text()) - 1;
-                        item.html(value).attr('class','').addClass('text_' + value);
-                    }
-                break;
-                case 'check':
-                    if ((i + "_" + j) != (x + "_" + y)) {
-                        if (!(parseInt(item.text()) >= 0) && item[0])
-                            count++;
-                    }
-                break;
+                        break;
+                    case 'check':
+                        if ((i + "_" + j) != (x + "_" + y)) {
+                            if (!(parseInt(item.text()) >= 0) && item[0])
+                                count++;
+                        }
+                        break;
+                }
             }
         }
-    }
-    if(action=='remove')
-        setMina(x, y, 'check');
-    if(action=='check')
-        $("#res_" + x + "_" + y).html(count).attr('class','').addClass('text_' + count);
-};
+        if(action=='remove')
+            setMina(x, y, 'check');
+        if(action=='check')
+            $("#res_" + x + "_" + y).html(count).attr('class','').addClass('text_' + count);
+    };
+}());
 
 
